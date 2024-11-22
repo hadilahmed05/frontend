@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+
+const API_URL = (window.location.hostname === "localhost") 
+  ? "http://localhost:8080/api/auth/"  // Local environment URL
+  : "http://backend:8080/api/auth/";  // Kubernetes service name (assuming "backend" is the name of your backend service in the cluster)
+
 
 class AuthService {
   login(username, password) {
